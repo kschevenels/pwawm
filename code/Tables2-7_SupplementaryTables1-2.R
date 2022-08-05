@@ -32,10 +32,10 @@ table2 <- flextable(dataf_concur_acute) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -67,10 +67,10 @@ table3 <- flextable(dataf_concur_subacute) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -102,10 +102,10 @@ table4 <- flextable(dataf_change_subacute) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -137,10 +137,10 @@ table5 <- flextable(dataf_change_chronic) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -172,10 +172,10 @@ table6 <- flextable(dataf_lagged_subacute) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -207,10 +207,10 @@ table7 <- flextable(dataf_lagged_chronic) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -242,10 +242,10 @@ SItable1 <- flextable(dataf_pred_subacute) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
@@ -277,10 +277,10 @@ SItable2 <- flextable(dataf_pred_chronic) %>%
   theme_vanilla %>% 
   set_header_labels(tract = "", laterality = "") %>%
   mk_par(j = 3, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 4, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 5, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   mk_par(j = 6, part = "header", value = as_paragraph(as_i(("β")))) %>% 
-  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SD")))) %>% 
+  mk_par(j = 7, part = "header", value = as_paragraph(as_i(("SE")))) %>% 
   mk_par(j = 8, part = "header", value = as_paragraph(as_i(("p")))) %>% 
   add_header_row(colwidths = c(2,3,3), values = c("", "Phonology", "Semantics")) %>%
   bold(part = "header") %>%
