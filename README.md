@@ -1,6 +1,6 @@
 # Description
 
-This repository contains data and code to reproduce the findings reported in:  Schevenels, K., Gerrits, R., Lemmens, R., De Smedt, B., Zink, I., Vandermosten, M. Early white matter connectivity and plasticity in language pathways in post stroke aphasia recovery.
+This repository contains data and code to reproduce the findings reported in:  Schevenels, K., Gerrits, R., Lemmens, R., De Smedt, B., Zink, I., Vandermosten, M. Early white matter connectivity and plasticity in post stroke aphasia recovery. NeuroImage: Clinical. 10.1016/j.nicl.2022.103271
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
