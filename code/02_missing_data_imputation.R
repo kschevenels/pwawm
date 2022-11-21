@@ -73,7 +73,7 @@ imputed_MICE <- mice(PWAWM, m = 10, maxit = 50, method = meth, seed = 500, pred 
 # stripplot(imputed_MICE, pch=20, cex=2) #if the data are MCAR, then the imputations should have the same distribution as the observed data
 # densityplot(imputed_MICE, ~ ANTAT_3_A | .imp, lwd = 3) #to compare distributions
 
-# Get long dataframe behavioral data
+# Get long dataframe for mixed model on behavioral change
 
 all_dats <- complete(imputed_MICE, action = "long", include = TRUE)
 working_beh <- list()
@@ -92,7 +92,7 @@ for(i in 0:max(all_dats$.imp)) {
 behav_long <- as.mids(do.call(rbind, working_beh))
 #view(complete(behav_long, 1, include = F))
 
-# Get long dataframe brain data
+# Get long dataframe for mixed model on FBC change
 
 working_brain <- list()
 for(i in 0:max(all_dats$.imp)) {
@@ -108,4 +108,75 @@ for(i in 0:max(all_dats$.imp)) {
 brain_long <- as.mids(do.call(rbind, working_brain))
 #view(complete(brain_long, 1, include = F))
 
-save(imputed_MICE, behav_long, brain_long, file = here("data", "imputed_data.RData"))
+# Get long dataframe for mixed model on concurrent results (AF)
+
+working_AF <- list()
+for(i in 0:max(all_dats$.imp)) {
+  working_AF[[i+1]] <- 
+    all_dats %>%
+    subset(.imp == i) %>%
+    pivot_longer(cols = c("ScreeLing_1_fon", "ScreeLing_1_sem", "ScreeLing_2_sem", "ScreeLing_2_fon", "ScreeLing_3_sem", "ScreeLing_3_fon"),
+                 names_to = c("Assessment", "TimeBeh", "Component"), 
+                 names_pattern = "(.*)_(.)_(.*)", 
+                 values_to = "score") %>%
+    mutate(TimeBeh = recode_factor(TimeBeh, "1" = "acute", "2" = "subacute", "3" = "chronic")) %>%
+    pivot_longer(cols = c("FBC_acute_AF_L", "FBC_acute_AF_R", "FBC_acute_IFOF_L", "FBC_acute_IFOF_R", "FBC_subacute_AF_L", "FBC_subacute_AF_R", "FBC_subacute_IFOF_L", "FBC_subacute_IFOF_R"),
+                 names_to = c(".value", "TimeBrain", "Tract", "Laterality"), 
+                 names_pattern = "(.*)_(.*)_(.*)_(.)") %>%
+    mutate(Time = interaction(TimeBeh, TimeBrain, sep = "_"), Component = as.factor(Component)) %>%
+    filter(Tract == "AF", Time == "acute_acute", Laterality == "L") %>%
+    select(.imp, .id, patient, Assessment, Component, score, Tract, Laterality, FBC, Time, stroke_size) %>%
+    mutate(.id = 1:nrow(.))
+}
+
+AF_long <- as.mids(do.call(rbind, working_AF))
+
+# Get long dataframe for mixed model on concurrent results (L IFOF)
+
+working_IFOF_L <- list()
+for(i in 0:max(all_dats$.imp)) {
+  working_IFOF_L[[i+1]] <- 
+    all_dats %>%
+    subset(.imp == i) %>%
+    pivot_longer(cols = c("ScreeLing_1_fon", "ScreeLing_1_sem", "ScreeLing_2_sem", "ScreeLing_2_fon", "ScreeLing_3_sem", "ScreeLing_3_fon"),
+                 names_to = c("Assessment", "TimeBeh", "Component"), 
+                 names_pattern = "(.*)_(.)_(.*)", 
+                 values_to = "score") %>%
+    mutate(TimeBeh = recode_factor(TimeBeh, "1" = "acute", "2" = "subacute", "3" = "chronic")) %>%
+    pivot_longer(cols = c("FBC_acute_AF_L", "FBC_acute_AF_R", "FBC_acute_IFOF_L", "FBC_acute_IFOF_R", "FBC_subacute_AF_L", "FBC_subacute_AF_R", "FBC_subacute_IFOF_L", "FBC_subacute_IFOF_R"),
+                 names_to = c(".value", "TimeBrain", "Tract", "Laterality"), 
+                 names_pattern = "(.*)_(.*)_(.*)_(.)") %>%
+    mutate(Time = interaction(TimeBeh, TimeBrain, sep = "_"), Component = as.factor(Component)) %>%
+    filter(Tract == "IFOF", Time == "acute_acute", Laterality == "L") %>%
+    select(.imp, .id, patient, Assessment, Component, score, Tract, Laterality, FBC, Time, stroke_size) %>%
+    mutate(.id = 1:nrow(.))
+}
+
+IFOF_L_long <- as.mids(do.call(rbind, working_IFOF_L))
+
+# Get long dataframe for mixed model on concurrent results (R IFOF)
+
+working_IFOF_R <- list()
+for(i in 0:max(all_dats$.imp)) {
+  working_IFOF_R[[i+1]] <- 
+    all_dats %>%
+    subset(.imp == i) %>%
+    pivot_longer(cols = c("ScreeLing_1_fon", "ScreeLing_1_sem", "ScreeLing_2_sem", "ScreeLing_2_fon", "ScreeLing_3_sem", "ScreeLing_3_fon"),
+                 names_to = c("Assessment", "TimeBeh", "Component"), 
+                 names_pattern = "(.*)_(.)_(.*)", 
+                 values_to = "score") %>%
+    mutate(TimeBeh = recode_factor(TimeBeh, "1" = "acute", "2" = "subacute", "3" = "chronic")) %>%
+    pivot_longer(cols = c("FBC_acute_AF_L", "FBC_acute_AF_R", "FBC_acute_IFOF_L", "FBC_acute_IFOF_R", "FBC_subacute_AF_L", "FBC_subacute_AF_R", "FBC_subacute_IFOF_L", "FBC_subacute_IFOF_R"),
+                 names_to = c(".value", "TimeBrain", "Tract", "Laterality"), 
+                 names_pattern = "(.*)_(.*)_(.*)_(.)") %>%
+    mutate(Time = interaction(TimeBeh, TimeBrain, sep = "_"), Component = as.factor(Component)) %>%
+    filter(Tract == "IFOF", Time == "acute_acute", Laterality == "R") %>%
+    select(.imp, .id, patient, Assessment, Component, score, Tract, Laterality, FBC, Time, stroke_size) %>%
+    mutate(.id = 1:nrow(.))
+}
+
+IFOF_R_long <- as.mids(do.call(rbind, working_IFOF_R))
+
+# Save data
+
+save(imputed_MICE, behav_long, brain_long, AF_long, IFOF_L_long, IFOF_R_long, file = here("data", "imputed_data.RData"))
