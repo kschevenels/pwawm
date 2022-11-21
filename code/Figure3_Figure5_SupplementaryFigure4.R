@@ -62,22 +62,23 @@ concur_text <- data.frame(
   Tract = c(rep("AF",4), rep("IFOF",4)),
   Component = rep(c("phonology", "phonology", "semantics", "semantics"),2),
   Laterality = rep(c("left", "right"),4),
-  x = rep(c(-1.05, -1), 4),
-  y = rep(c(2.8, 2.5),4)
+  x = rep(c(-0.58, -0.47), 4),
+  y = rep(c(2.7, 2.3),4)
 )
 
 concur_matrix <- PWAWM_long_acute %>%  
   ggplot(aes(x=FBC_z, y=score_z, color=Laterality, fill=Laterality)) +
   geom_point(size=2.5) +
   geom_smooth(method=rlm, se = T, alpha = 0.2) +
-  scale_colour_manual(values = cbbPalette[c(4,7)]) +
-  scale_fill_manual(values = cbbPalette[c(4,7)]) +
+  scale_colour_manual(values = c("#bdbdbd", "black")) +
+  scale_fill_manual(values = c("#bdbdbd", "black")) +
   guides(colour = "none", shape = "none", size = "none", fill = "none") +
   labs(x="Acute FBC (scaled)", y = "Acute language outcome (scaled)")+
   theme_classic() +
   facet_grid(Tract ~ Component) +
+  theme(strip.text = element_text(size = 14), axis.text = element_text(size=14), axis.title = element_text(size=14)) +
   geom_text(
-    data = concur_text, size = 4,
+    data = concur_text, size = 5.5,
     mapping = aes(x = x, y = y, label = label)
   )
 
@@ -113,27 +114,28 @@ AF_delta <- PWAWM %>%
 
 change_text <- data.frame(
   label = c(paste0("Left: \u03b2 = ", numformat(cl_beh_deltaLAF_fon$estimate[2])),
-            paste0("Right: \u03b2 = ", numformat(cl_beh_deltaRAF_fon$estimate[2]), "*"),
+            paste0("Right: \u03b2 = ", numformat(cl_beh_deltaRAF_fon$estimate[2]), " "),
             paste0("Left: \u03b2 = ", numformat(cl_beh_deltaLAF_sem$estimate[2])),
             paste0("Right: \u03b2 = ", numformat(cl_beh_deltaRAF_sem$estimate[2]))),
   Component = c("phonology", "phonology", "semantics", "semantics"),
   Laterality = rep(c("left", "right"),2),
-  x = rep(c(-2.6, -2.52), 2),
-  y = rep(c(1.4, 1.15),2)
+  x = rep(c(-2.2, -2.08), 2),
+  y = rep(c(-1.7, -2.05),2)
 )
 
 change_matrix <- AF_delta %>%  
   ggplot(aes(x=scale(delta_FBC_AF_z), y=subacute_resid, color=Laterality, fill=Laterality)) +
   geom_point(size=2.5) +
   geom_smooth(method=rlm, se = T, alpha = 0.2) +
-  scale_colour_manual(values = cbbPalette[c(4,7)]) +
-  scale_fill_manual(values = cbbPalette[c(4,7)]) +
+  scale_colour_manual(values = c("#bdbdbd", "black")) +
+  scale_fill_manual(values = c("#bdbdbd", "black")) +
   guides(colour = "none", shape = "none", size = "none", fill = "none") +
   labs(x="Early change in FBC of the AF (scaled)", y = "Subacute language outcome (corrected for AR effect)")+
   theme_classic() +
   facet_grid(~ Component) +
+  theme(strip.text = element_text(size = 14), axis.text = element_text(size=14), axis.title = element_text(size=14)) +
   geom_text(
-    data = change_text, size = 4,
+    data = change_text, size = 5.5,
     mapping = aes(x = x, y = y, label = label)
   )
 
@@ -148,29 +150,30 @@ PWAWM_long_FBC_acute <- PWAWM_long_FBC %>% filter(TimeBrain == "acute")
 PWAWM_long_pred <- left_join(PWAWM_long_beh_subacute, PWAWM_long_FBC_acute)
 
 pred_text <- data.frame(
-  label = c(paste0("Left: \u03b2 = ", numformat(pred_beh_LAF_fon$estimate[2]), " "), paste0("Right: \u03b2 = ", numformat(pred_beh_RAF_fon$estimate[2])),
+  label = c(paste0("Left: \u03b2 = ", numformat(pred_beh_LAF_fon$estimate[2]), " "), paste0(" Right: \u03b2 = ", numformat(pred_beh_RAF_fon$estimate[2])),
             paste0("Left: \u03b2 = ", numformat(pred_beh_LAF_sem$estimate[2]), "  "), paste0("Right: \u03b2 = ", numformat(pred_beh_RAF_sem$estimate[2]), "*"), 
             paste0("Left: \u03b2 = ", numformat(pred_beh_LIFOF_fon$estimate[2])), paste0("Right: \u03b2 = ", numformat(pred_beh_RIFOF_fon$estimate[2])),
-            paste0("Left: \u03b2 = ", numformat(pred_beh_LIFOF_sem$estimate[2]), "*"), paste0("Right: \u03b2 = ", numformat(pred_beh_RIFOF_sem$estimate[2]))),
+            paste0("Left: \u03b2 = ", numformat(pred_beh_LIFOF_sem$estimate[2]), "*"), paste0("Right: \u03b2 = ", numformat(pred_beh_RIFOF_sem$estimate[2]), " ")),
   Tract = c(rep("AF",4), rep("IFOF",4)),
   Component = rep(c("phonology", "phonology", "semantics", "semantics"),2),
   Laterality = rep(c("left", "right"),4),
-  x = rep(c(-1, -0.95), 4),
-  y = rep(c(-2.8, -3.2),4)
+  x = rep(c(-0.58, -0.5), 4),
+  y = rep(c(-2.8, -3.3),4)
 )
 
 pred_matrix <- PWAWM_long_pred %>%  
   ggplot(aes(x=FBC_z, y=score_z, color=Laterality, fill=Laterality)) +
-  geom_point(size=2.5) +
-  geom_smooth(method=rlm, se = T, alpha = 0.2) +
-  scale_colour_manual(values = cbbPalette[c(4,7)]) +
-  scale_fill_manual(values = cbbPalette[c(4,7)]) +
+  geom_point(size=3) +
+  geom_smooth(method=rlm, se = T, size = 1.5, alpha = 0.2) +
+  scale_colour_manual(values = c("#bdbdbd", "black")) +
+  scale_fill_manual(values = c("#bdbdbd", "black")) +
   guides(colour = "none", shape = "none", size = "none", fill = "none") +
   labs(x="Acute FBC (scaled)", y = "Subacute language outcome (scaled)")+
   theme_classic() +
   facet_grid(Tract ~ Component) +
+  theme(strip.text = element_text(size = 14), axis.text = element_text(size=14), axis.title = element_text(size=14)) +
   geom_text(
-    data = pred_text, size = 4,
+    data = pred_text, size = 5.5,
     mapping = aes(x = x, y = y, label = label)
   )
 
