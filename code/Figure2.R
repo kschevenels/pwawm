@@ -27,9 +27,10 @@ Individual_evolution_linechart <- datafr %>%
   geom_point(data = datafr, size = 1.5) + 
   theme_classic() + 
   labs(x = "Phase post stroke", y = "Language score (/24)") + 
-  scale_colour_manual(values = cbbPalette[c(4,7)]) +
+  scale_colour_manual(values = c("#bdbdbd", "#636363")) +
   scale_x_discrete(limits = c("acute", "subacute", "chronic")) +
   facet_grid(. ~ Component) + 
+  geom_hline(yintercept = 22, color = cbbPalette[1], size = 0.7, linetype="dashed") + 
   theme(legend.position="none") 
 
 tiff(here("figs", "Figure2.tiff"), units="mm", width=180, height=150, res=600, compression="lzw")
