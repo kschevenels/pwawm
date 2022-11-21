@@ -21,11 +21,11 @@ FBC_evolution_boxplot_withsig <- ggplot(FBC_over_time_long, aes(Laterality, FBC)
   geom_boxplot(aes(color = Time))+
   geom_point(aes(fill=NULL, color = Time), position = position_jitterdodge(), size = 2) +
   facet_wrap(~Tract) +
-  scale_colour_manual(values = cbbPalette[c(4,7)]) +
+  scale_colour_manual(values = c("#bdbdbd", "#636363")) +
   stat_compare_means(aes(group = Time), label = "p.signif", paired = T) + 
   theme_classic() +
   labs(y = "FBC (a.u.)") 
-  
-tiff(here("figs", "Figure4.tiff"), units="mm", width=180, height=150, res=600, compression="lzw")
+
+tiff(here("figs", "Figure4.tiff"), units="mm", width=150, height=150, res=600, compression="lzw")
 FBC_evolution_boxplot_withsig
 dev.off()
