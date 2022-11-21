@@ -33,6 +33,18 @@ concur_acute = list(concur_1_LAF_fon, concur_1_LAF_sem, concur_1_RAF_fon, concur
 
 save(concur_1_LAF_fon, concur_1_LAF_sem, concur_1_RAF_fon, concur_1_RAF_sem, concur_1_LIFOF_fon, concur_1_LIFOF_sem, concur_1_RIFOF_fon, concur_1_RIFOF_sem, file = here("data", "concur_acute.RData"))
 
+interactionAF <- joint_tests(with(data=AF_long, exp = lmer(score ~ FBC*Component + (1|patient))))
+emt_intAF <- emtrends(with(data=AF_long, exp = lmer(score ~ FBC*Component + (1|patient))), "Component", var = "FBC")
+pairs_intAF <- as.data.frame(pairs(emt_intAF) %>% summary(infer = T))
+
+interactionLIFOF <- joint_tests(with(data=IFOF_L_long, exp = lmer(score ~ FBC*Component + (1|patient))))
+emt_intLIFOF <- emtrends(with(data=IFOF_L_long, exp = lmer(score ~ FBC*Component + (1|patient))), "Component", var = "FBC")
+pairs_intLIFOF <- as.data.frame(pairs(emt_intLIFOF) %>% summary(infer = T))
+
+interactionRIFOF <- joint_tests(with(data=IFOF_R_long, exp = lmer(score ~ FBC*Component + (1|patient))))
+emt_intRIFOF <- emtrends(with(data=IFOF_R_long, exp = lmer(score ~ FBC*Component + (1|patient))), "Component", var = "FBC")
+pairs_intRIFOF <- as.data.frame(pairs(emt_intRIFOF) %>% summary(infer = T))
+
 ## Timepoint 2 
 
 concur_2_LAF_fon <- summary(pool(with(data=imputed_MICE, exp = rlm(scale(ScreeLing_2_fon) ~ scale(FBC_subacute_AF_L), maxit=50)))) 
